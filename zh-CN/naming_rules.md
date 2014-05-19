@@ -15,3 +15,10 @@ func IsEntry(name string, entries []string) bool { ...
 - 在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：
 	- `user` 可以简写为 `u`
 	- `userId` 可以简写 `uid`
+	
+#### 变量命名惯例
+
+- 代表某个用户：`u`
+- 代表某个用户 ID：`uid`
+- 代表某个索引：`idx`
+- 代表某个值：`val`

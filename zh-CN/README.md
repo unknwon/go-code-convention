@@ -9,3 +9,5 @@
 - [注释规范](commentary.md)
 - [命名规则](naming_rules.md)
 - [声明语句](declaration.md)
+- [代码指导](coding_guidelines.md)
+- [测试用例](test_case.md)

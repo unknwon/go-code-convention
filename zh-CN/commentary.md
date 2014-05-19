@@ -1,8 +1,10 @@
 # 注释规范
 
-- 所有的注释说明都必须是一个完整的句子，而非短语。
 - 任何导出与非导出对象都需要注释说明其用途。
-- 如果对象可数且无明确指定数量的情况下，一律使用单数形式描述。
+- 如果对象可数且无明确指定数量的情况下，一律使用单数形式和一般进行时描述。
+- 包、函数、方法或类型的注释说明都必须是一个完整的句子。
+- 句子类型的注释首字母均需大写；短语类型的注释首字母需小写。
+- 注释的单行长度不能超过 80 个字符。
 
 ### 包级别
 
@@ -51,6 +53,14 @@ package main
 // A Request represents a request to run a command.
 type Request struct { ...
 	```
+	
+- 如果为接口，则一般以以下形式描述：
+
+	```
+// A FileInfo describes a file and is returned by Stat and Lstat.
+type FileInfo interface { ...
+	```
+
 
 ### 函数与方法
 
@@ -72,4 +82,14 @@ type Request struct { ...
 	```
 // HasPrefix returns true if name has any string in given slice as prefix.
 func HasPrefix(name string, prefixes []string) bool { ...
+	```
+	
+### 其它说明
+
+- 当需要特别说明某个问题时，可用 `NOTE:` 开头的注释来提醒其他维护人员：
+
+	```
+// NOTE: os.Chmod and os.Chtimes don't recoganize symbolic link,
+// which will lead "no such file or directory" error.
+return os.Symlink(target, dest)
 	```
