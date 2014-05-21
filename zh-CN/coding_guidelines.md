@@ -46,16 +46,7 @@ So(z.ExtractTo(
 	// ExecCmdDirBytes executes system command in given directory
 	// and return stdout, stderr in bytes type, along with possible error.
 	func ExecCmdDirBytes(dir, cmdName string, args ...string) ([]byte, []byte, error) {
-		bufOut := new(bytes.Buffer)
-		bufErr := new(bytes.Buffer)
-	
-		cmd := exec.Command(cmdName, args...)
-		cmd.Dir = dir
-		cmd.Stdout = bufOut
-		cmd.Stderr = bufErr
-	
-		err := cmd.Run()
-		return bufOut.Bytes(), bufErr.Bytes(), err
+	...
 	}
 	
 	// ExecCmdDir executes system command in given directory
@@ -71,5 +62,19 @@ So(z.ExtractTo(
 		return ExecCmdDir("", cmdName, args...)
 	}
 	```
+	
+- 如果某个类型的变量的某个字段为函数类型，则习惯性将该变量置于最前，相关函数紧随其后：
+
+	```
+	var CmdDump = cli.Command{
+		Name:  "dump",
+		...
+		Action: runDump,
+		Flags:  []cli.Flag{},
+	}
+	
+	func runDump(*cli.Context) { ...
+	```
+
 
 

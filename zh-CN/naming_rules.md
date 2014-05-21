@@ -9,6 +9,26 @@ func HasPrefix(name string, prefixes []string) bool { ...
 func IsEntry(name string, entries []string) bool { ...
 	```
 	
+### 常量
+
+- 常量均需使用全部大写字母组成，并使用下划线分词：
+
+	```
+const APP_VER = "0.3.5.0519 Alpha"
+	```
+	
+- 如果是枚举类型的常量，需要先创建相应类型：
+
+	```
+	type Scheme string
+	
+	const (
+		HTTP  Scheme = "http"
+		HTTPS Scheme = "https"
+	)
+	```
+
+	
 ### 变量
 
 - 变量命名基本上遵循相应的英文翻译。
