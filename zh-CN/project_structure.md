@@ -12,6 +12,7 @@
 - routers(controllers)：用于存放路由文件
 - models：用于存放业务逻辑层文件
 - modules：用于存放子模块文件
+	- setting：用于存放应用配置存取文件
 - cmd：用于存放命令行程序命令文件
 - conf：用于存放配置文件
 - data：用于存放应用生成数据文件

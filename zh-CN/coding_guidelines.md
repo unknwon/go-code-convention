@@ -2,12 +2,38 @@
 
 ### 基本约束
 
+- 所有应用的 `main` 包需要有 `APP_VER` 常量表示版本，格式为 `X.Y.Z.Date Status`，例如：`0.6.5.0524 Alpha`。
+- 单独的库需要有函数 `Version` 返回库版本号的字符串，格式同上。
 - 当单行代码超过 80 个字符时，就要考虑分行。分行的规则是以参数为单位将从较长的参数开始换行，以此类推直到每行长度合适：
 
 	```
 So(z.ExtractTo(
 	path.Join(os.TempDir(), "testdata/test2"),
 	"dir/", "dir/bar", "readonly"), ShouldBeNil)
+	```
+	
+- 当单行声明语句超过 80 个字符时，就要考虑分行。分行的规则是将参数按类型分组，紧接着的声明语句的是一个空行，以便和函数体区别：
+
+	```
+// NewNode initializes and returns a new Node representation.
+func NewNode(
+	importPath, downloadUrl string,
+	tp RevisionType, val string,
+	isGetDeps bool) *Node {
+
+	n := &Node{
+		Pkg: Pkg{
+			ImportPath: importPath,
+			RootPath:   GetRootPath(importPath),
+			Type:       tp,
+			Value:      val,
+		},
+		DownloadURL: downloadUrl,
+		IsGetDeps:   isGetDeps,
+	}
+	n.InstallPath = path.Join(setting.InstallRepoPath, n.RootPath) + n.ValSuffix()
+	return n
+}
 	```
 	
 - 分组声明一般需要按照功能来区分，而不是将所有类型都分在一组：
