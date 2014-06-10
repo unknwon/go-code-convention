@@ -32,7 +32,6 @@ const APP_VER = "0.3.5.0519 Alpha"
 	)
 	```
 
-	
 ### 变量
 
 - 变量命名基本上遵循相应的英文翻译。
@@ -45,7 +44,22 @@ const APP_VER = "0.3.5.0519 Alpha"
 	var isExist bool
 	var hasConflict bool
 	```
-	
+- 上条规则也适用于 ORM 模型：
+
+	```
+	type Webhook struct {
+		Id          int64
+		RepoId      int64
+		Url         string `xorm:"TEXT"`
+		ContentType int
+		Secret      string `xorm:"TEXT"`
+		Events      string `xorm:"TEXT"`
+		*HookEvent  `xorm:"-"`
+		IsSsl       bool
+		IsActive    bool
+	}
+	```
+
 #### 变量命名惯例
 
 - 代表某个用户：`u`

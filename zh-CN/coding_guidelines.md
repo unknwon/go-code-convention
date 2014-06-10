@@ -88,7 +88,24 @@ func NewNode(
 		return ExecCmdDir("", cmdName, args...)
 	}
 	```
-	
+- 结构附带的方法应置于结构定义之后，按照所对应操作的字段顺序摆放方法：
+
+	```
+	type Webhook struct { ...
+	func (w *Webhook) GetEvent() { ...
+	func (w *Webhook) SaveEvent() error { ...
+	func (w *Webhook) HasPushEvent() bool { ...
+	```
+
+- 如果一个结构拥有对应操作函数，大体上按照 `CRUD` 的顺序放置结构定义之后：
+
+	```
+	func CreateWebhook(w *Webhook) error { ...
+	func GetWebhookById(hookId int64) (*Webhook, error) { ...
+	func UpdateWebhook(w *Webhook) error { ...
+	func DeleteWebhook(hookId int64) error { ...
+	```
+
 - 如果某个类型的变量的某个字段为函数类型，则习惯性将该变量置于最前，相关函数紧随其后：
 
 	```
@@ -101,6 +118,15 @@ func NewNode(
 	
 	func runDump(*cli.Context) { ...
 	```
+- 在初始化结构时，不能使用匿名初始化，必须用一一对应方式：
 
-
+	```
+	AddHookTask(&HookTask{
+		Type:        HTT_WEBHOOK,
+		Url:         w.Url,
+		Payload:     p,
+		ContentType: w.ContentType,
+		IsSsl:       w.IsSsl,
+	})
+	```
 
