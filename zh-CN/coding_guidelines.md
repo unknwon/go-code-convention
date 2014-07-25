@@ -105,7 +105,8 @@ func NewNode(
 	func UpdateWebhook(w *Webhook) error { ...
 	func DeleteWebhook(hookId int64) error { ...
 	```
-
+- 如果一个结构拥有以 `Is` 或 `Has` 开头的方法或函数，则应将它们至于所有其它函数及方法之前；另外，`Is` 函数或方法要置于 `Has` 函数或方法之前。
+- 结构所属的方法需要置于结构所属的函数之前。
 - 如果某个类型的变量的某个字段为函数类型，则习惯性将该变量置于最前，相关函数紧随其后：
 
 	```
