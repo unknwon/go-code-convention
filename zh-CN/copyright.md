@@ -42,14 +42,14 @@
 - 如果存在不同作者或组织对同个源文件的修改，在协议兼容的情况下，可将首行变为多行，按照先后次序排放：
 
 	```
-// Copyright 2011 Gary Burd
-// Copyright 2013 Unknown
+	// Copyright 2011 Gary Burd
+	// Copyright 2013 Unknown
 	```
 	
 - 在 README 文件最后中需要说明项目所采用的开源许可证：
 
-```
-## 授权许可
-
-本项目采用 MIT 开源授权许可证，完整的授权说明已放置在 [LICENSE](LICENSE) 文件中。
-```
+	```
+	## 授权许可
+	
+	本项目采用 MIT 开源授权许可证，完整的授权说明已放置在 [LICENSE](LICENSE) 文件中。
+	```

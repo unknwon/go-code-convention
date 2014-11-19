@@ -10,17 +10,17 @@
 
 - 包级别的注释就是对包的介绍，只需在同个包的任一源文件中说明即可有效。
 - 对于 `main` 包，一般只有一行简短的注释用以说明包的用途，且以项目名称开头：
-		
-	```
-// Gogs(Go Git Service) is a Self Hosted Git Service in the Go Programming Language.
-package main
+	
+	```Go
+	// Gogs(Go Git Service) is a Self Hosted Git Service in the Go Programming Language.
+	package main
 	```
 	
 - 对于一个复杂项目的子包，一般情况下不需要包级别注释，除非是代表某个特定功能的模块。
 - 对于简单的非 `main` 包，也可用一行注释概括。
 - 对于相对功能复杂的非 `main` 包，一般都会增加一些使用示例或基本说明，且以 `Package <name>` 开头：
 
-	```
+	```Go
 	/*
 	Package regexp implements a simple library for regular expressions.
 	
@@ -49,16 +49,16 @@ package main
 
 - 类型的定义一般都以单数形式描述：
 
-	```
-// A Request represents a request to run a command.
-type Request struct { ...
+	```Go
+	// A Request represents a request to run a command.
+	type Request struct { ...
 	```
 	
 - 如果为接口，则一般以以下形式描述：
 
-	```
-// A FileInfo describes a file and is returned by Stat and Lstat.
-type FileInfo interface { ...
+	```Go
+	// A FileInfo describes a file and is returned by Stat and Lstat.
+	type FileInfo interface { ...
 	```
 
 
@@ -66,30 +66,30 @@ type FileInfo interface { ...
 
 - 函数与方法的注释需以函数或方法的名称作为开头：
 
-	```
-// Post returns *BeegoHttpRequest with POST method.
+	```Go
+	// Post returns *BeegoHttpRequest with POST method.
 	```
 	
 - 如果一句话不足以说明全部问题，则可换行继续进行更加细致的描述：
 
-	```
-// Copy copies file from source to target path.
-// It returns false and error when error occurs in underlying function calls.
+	```Go
+	// Copy copies file from source to target path.
+	// It returns false and error when error occurs in underlying function calls.
 	```
 	
 - 若函数或方法为判断类型（返回值主要为 `bool` 类型），则以 `<name> returns true if` 开头：
 
-	```
-// HasPrefix returns true if name has any string in given slice as prefix.
-func HasPrefix(name string, prefixes []string) bool { ...
+	```Go
+	// HasPrefix returns true if name has any string in given slice as prefix.
+	func HasPrefix(name string, prefixes []string) bool { ...
 	```
 	
 ### 其它说明
 
 - 当需要特别说明某个问题时，可用 `NOTE:` 开头的注释来提醒其他维护人员：
 
-	```
-// NOTE: os.Chmod and os.Chtimes don't recoganize symbolic link,
-// which will lead "no such file or directory" error.
-return os.Symlink(target, dest)
+	```Go
+	// NOTE: os.Chmod and os.Chtimes don't recoganize symbolic link,
+	// which will lead "no such file or directory" error.
+	return os.Symlink(target, dest)
 	```
