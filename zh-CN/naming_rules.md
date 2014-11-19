@@ -8,7 +8,7 @@
 
 - 若函数或方法为判断类型（返回值主要为 `bool` 类型），则名称应以 `Has` 或 `Is` 开头：
 
-	```
+	```Go
 func HasPrefix(name string, prefixes []string) bool { ...
 func IsEntry(name string, entries []string) bool { ...
 	```
@@ -17,13 +17,13 @@ func IsEntry(name string, entries []string) bool { ...
 
 - 常量均需使用全部大写字母组成，并使用下划线分词：
 
-	```
+	```Go
 const APP_VER = "0.3.5.0519 Alpha"
 	```
 	
 - 如果是枚举类型的常量，需要先创建相应类型：
 
-	```
+	```Go
 	type Scheme string
 	
 	const (
@@ -40,13 +40,13 @@ const APP_VER = "0.3.5.0519 Alpha"
 	- `userId` 可以简写 `uid`
 - 若变量类型为 `bool` 类型，则名称应以 `Has` 或 `Is` 开头：
 
-	```
+	```Go
 	var isExist bool
 	var hasConflict bool
 	```
 - 上条规则也适用于 ORM 模型：
 
-	```
+	```Go
 	type Webhook struct {
 		Id          int64
 		RepoId      int64

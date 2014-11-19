@@ -10,7 +10,7 @@
 
 下面是一个完整的示例：
 
-```
+```Go
 import (
 	"fmt"
 	"html/template"
@@ -22,7 +22,7 @@ import (
 
 	"github.com/gogits/git"
 	"github.com/gogits/gfm"
-	
+
 	"github.com/gogits/gogs/routers"
 	"github.com/gogits/gogs/routers/repo"
 	"github.com/gogits/gogs/routers/user"
