@@ -6,7 +6,7 @@
 - 单独的库需要有函数 `Version` 返回库版本号的字符串，格式同上。
 - 当单行代码超过 80 个字符时，就要考虑分行。分行的规则是以参数为单位将从较长的参数开始换行，以此类推直到每行长度合适：
 
-	```Go
+	```go
 	So(z.ExtractTo(
 		path.Join(os.TempDir(), "testdata/test2"),
 		"dir/", "dir/bar", "readonly"), ShouldBeNil)
@@ -14,7 +14,7 @@
 	
 - 当单行声明语句超过 80 个字符时，就要考虑分行。分行的规则是将参数按类型分组，紧接着的声明语句的是一个空行，以便和函数体区别：
 
-	```Go
+	```go
 	// NewNode initializes and returns a new Node representation.
 	func NewNode(
 		importPath, downloadUrl string,
@@ -38,7 +38,7 @@
 	
 - 分组声明一般需要按照功能来区分，而不是将所有类型都分在一组：
 
-	```Go
+	```go
 	const (
 		// Default section name.
 		DEFAULT_SECTION = "DEFAULT"
@@ -57,7 +57,7 @@
 	
 - 当一个源文件中存在多个相对独立的部分时，为方便区分，需使用由 [ASCII Generator](http://www.network-science.de/ascii/) 提供的句型字符标注（示例：`Comment`）：
 
-	```Go
+	```go
 	// _________                                       __
 	// \_   ___ \  ____   _____   _____   ____   _____/  |_
 	// /    \  \/ /  _ \ /     \ /     \_/ __ \ /    \   __\
@@ -68,7 +68,7 @@
 
 - 函数或方法的顺序一般需要按照依赖关系由浅入深由上至下排序，即最底层的函数出现在最前面。例如，下方的代码，函数 `ExecCmdDirBytes` 属于最底层的函数，它被 `ExecCmdDir` 函数调用，而 `ExecCmdDir` 又被 `ExecCmd` 调用：
 
-	```Go
+	```go
 	// ExecCmdDirBytes executes system command in given directory
 	// and return stdout, stderr in bytes type, along with possible error.
 	func ExecCmdDirBytes(dir, cmdName string, args ...string) ([]byte, []byte, error) {
@@ -90,7 +90,7 @@
 	```
 - 结构附带的方法应置于结构定义之后，按照所对应操作的字段顺序摆放方法：
 
-	```Go
+	```go
 	type Webhook struct { ...
 	func (w *Webhook) GetEvent() { ...
 	func (w *Webhook) SaveEvent() error { ...
@@ -99,7 +99,7 @@
 
 - 如果一个结构拥有对应操作函数，大体上按照 `CRUD` 的顺序放置结构定义之后：
 
-	```Go
+	```go
 	func CreateWebhook(w *Webhook) error { ...
 	func GetWebhookById(hookId int64) (*Webhook, error) { ...
 	func UpdateWebhook(w *Webhook) error { ...
@@ -109,7 +109,7 @@
 - 结构所属的方法需要置于结构所属的函数之前。
 - 如果某个类型的变量的某个字段为函数类型，则习惯性将该变量置于最前，相关函数紧随其后：
 
-	```Go
+	```go
 	var CmdDump = cli.Command{
 		Name:  "dump",
 		...
@@ -121,7 +121,7 @@
 	```
 - 在初始化结构时，不能使用匿名初始化，必须用一一对应方式：
 
-	```Go
+	```go
 	AddHookTask(&HookTask{
 		Type:        HTT_WEBHOOK,
 		Url:         w.Url,
@@ -130,4 +130,11 @@
 		IsSsl:       w.IsSsl,
 	})
 	```
+- 如果需要初始化的字段的字母总数量较少，可以合并到一行：
+
+	```go
+	// ...
+	return x.Get(&User{OrgEmail: email})
+	```
+
 
