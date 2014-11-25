@@ -3,7 +3,7 @@
 ### 基本约束
 
 - 所有应用的 `main` 包需要有 `APP_VER` 常量表示版本，格式为 `X.Y.Z.Date Status`，例如：`0.6.5.0524 Alpha`。
-- 单独的库需要有函数 `Version` 返回库版本号的字符串，格式同上。
+- 单独的库需要有函数 `Version` 返回库版本号的字符串，格式为 `X.Y.Z`。
 - 当单行代码超过 80 个字符时，就要考虑分行。分行的规则是以参数为单位将从较长的参数开始换行，以此类推直到每行长度合适：
 
 	```go
@@ -46,12 +46,13 @@
 		_DEPTH_VALUES = 200
 	)
 	
-	// Parse error types.
+	type ParseError int
+	
 	const (
-		ErrSectionNotFound = iota + 1
-		ErrKeyNotFound
-		ErrBlankSectionName
-		ErrCouldNotParse
+		ERR_SECTION_NOT_FOUND ParseError = iota + 1
+		ERR_KEY_NOT_FOUND
+		ERR_BLANK_SECTION_NAME
+		ERR_COULD_NOT_PARSE
 	)
 	```
 	
@@ -105,7 +106,7 @@
 	func UpdateWebhook(w *Webhook) error { ...
 	func DeleteWebhook(hookId int64) error { ...
 	```
-- 如果一个结构拥有以 `Is` 或 `Has` 开头的方法或函数，则应将它们至于所有其它函数及方法之前；另外，`Is` 函数或方法要置于 `Has` 函数或方法之前。
+- 如果一个结构拥有以 `Has`、`Is`、`Can` 或 `Allow` 开头的函数或方法，则应将它们至于所有其它函数及方法之前；这些函数或方法以 `Has`、`Is`、`Can`、`Allow` 的顺序排序。
 - 结构所属的方法需要置于结构所属的函数之前。
 - 如果某个类型的变量的某个字段为函数类型，则习惯性将该变量置于最前，相关函数紧随其后：
 
