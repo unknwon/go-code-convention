@@ -50,14 +50,14 @@
 - 类型的定义一般都以单数形式描述：
 
 	```Go
-	// A Request represents a request to run a command.
+	// Request represents a request to run a command.
 	type Request struct { ...
 	```
 	
 - 如果为接口，则一般以以下形式描述：
 
 	```Go
-	// A FileInfo describes a file and is returned by Stat and Lstat.
+	// FileInfo is the interface that describes a file and is returned by Stat and Lstat.
 	type FileInfo interface { ...
 	```
 
