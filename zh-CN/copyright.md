@@ -43,7 +43,7 @@
 
 	```
 	// Copyright 2011 Gary Burd
-	// Copyright 2013 Unknown
+	// Copyright 2013 Unknwon
 	```
 	
 - 在 README 文件最后中需要说明项目所采用的开源许可证：
