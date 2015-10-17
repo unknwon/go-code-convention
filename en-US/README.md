@@ -5,3 +5,4 @@ This manual is based on [Unknwon](https://github.com/Unknwon)'s develop experien
 -----
 
 - [Copyright](copyright.md)
+- [Test Cases](test_case.md)
