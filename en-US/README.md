@@ -5,4 +5,5 @@ This manual is based on [Unknwon](https://github.com/Unknwon)'s develop experien
 -----
 
 - [Copyright](copyright.md)
+- [Project Structure](project_structure.md)
 - [Test Cases](test_case.md)
