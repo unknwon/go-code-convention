@@ -18,7 +18,7 @@ import (
 	"os"
 
 	"github.com/codegangsta/cli"
-	"github.com/go-martini/martini"
+	"gopkg.in/macaron.v1"
 
 	"github.com/gogits/git"
 	"github.com/gogits/gfm"
