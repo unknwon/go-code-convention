@@ -1,12 +1,12 @@
-# 命名规则
+# Naming Rules
 
-### 文件名
+### File name
 
-- 整个应用或包的主入口文件应当是 `main.go` 或与应用名称简写相同。例如：`Gogs` 的主入口文件名为 `gogs.go`。
+- The main entry point file of the application should be named as `main.go` or same as the application. For example, the entry point file of `Gogs` is named `gogs.go`.
 
-### 函数或方法
+### Functions and Methods
 
-- 若函数或方法为判断类型（返回值主要为 `bool` 类型），则名称应以 `Has`, `Is`, `Can` 或 `Allow` 等判断性动词开头：
+- If the main purpose of functions or methods is returning a `bool` type value, the name of function or method should starts with `Has`, `Is`, `Can` or `Allow`, etc.
 
 	```go
 	func HasPrefix(name string, prefixes []string) bool { ... }
@@ -15,15 +15,15 @@
 	func AllowGitHook() bool { ... }
 	```
 
-### 常量
+### Constants
 
-- 常量均需使用全部大写字母组成，并使用下划线分词：
+- Constant should use all capital letters and use underscore `_` to separate words.
 
 	```go
 	const APP_VER = "0.7.0.1110 Beta"
 	```
 
-- 如果是枚举类型的常量，需要先创建相应类型：
+- If you need enumerated type, you should define the corresponding type first:
 
 	```go
 	type Scheme string
@@ -34,7 +34,7 @@
 	)
 	```
 
-- 如果模块的功能较为复杂、常量名称容易混淆的情况下，为了更好地区分枚举类型，可以使用完整的前缀：
+- If functionality of the module is relatively complicated and easy to mixed up with constant name, you can add prefix to every constant:
 
 	```go
 	type PullRequestStatus int
@@ -46,13 +46,13 @@
 	)
 	```
 
-### 变量
+### Variables
 
-- 变量命名基本上遵循相应的英文表达或简写。
-- 在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：
-	- `user` 可以简写为 `u`
-	- `userID` 可以简写 `uid`
-- 若变量类型为 `bool` 类型，则名称应以 `Has`, `Is`, `Can` 或 `Allow` 开头：
+- A variable name should follow general English expression or shorthand.
+- In relatively simple (less objects and more specific) context, variable name can use simplified form as follows:
+    - `user` to `u`
+    - `userID` to `uid`
+- If variable type is `bool`, its name should start with `Has`, `Is`, `Can` or `Allow`, etc.
 
 	```go
 	var isExist bool
@@ -60,8 +60,8 @@
 	var canManage bool
 	var allowGitHook bool
 	```
-	
-- 上条规则也适用于结构定义：
+
+- The last rule also applies for defining structs:
 
 	```go
 	// Webhook represents a web hook object.
@@ -84,14 +84,14 @@
 	}
 	```
 
-#### 变量命名惯例
+#### Variable Naming Convention
 
-变量名称一般遵循驼峰法，但遇到特有名词时，需要遵循以下规则：
+Variable name is generally using Camel Case style, but when you have unique nouns, should apply following rules:
 
-- 如果变量为私有，且特有名词为首个单词，则使用小写，如 `apiClient`。
-- 其它情况都应当使用该名词原有的写法，如 `APIClient`、`repoID`、`UserID`。
+- If the variable is private, and the unique noun is the first word, then use lower cases, e.g. `apiClient`.
+- Otherwise, use the original cases for the unique noun, e.g. `APIClient`, `repoID`, `UserID`.
 
-下面列举了一些常见的特有名词：
+Here is a list of words which are commonly identified as unique nouns:
 
 ```go
 // A GonicMapper that contains a list of common initialisms taken from golang/lint
