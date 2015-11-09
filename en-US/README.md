@@ -9,4 +9,5 @@ This manual is based on [Unknwon](https://github.com/Unknwon)'s develop experien
 - [Import Packages](import_packages.md)
 - [Commentary](commentary.md)
 - [Naming Rules](naming_rules.md)
+- [Declaration](declaration.md)
 - [Test Cases](test_case.md)
