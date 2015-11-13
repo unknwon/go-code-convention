@@ -1,10 +1,10 @@
-# 代码指导
+# Coding Guidelines
 
-### 基本约束
+### Basic Rules
 
-- 所有应用的 `main` 包需要有 `APP_VER` 常量表示版本，格式为 `X.Y.Z.Date [Status]`，例如：`0.7.6.1112 Beta`。
-- 单独的库需要有函数 `Version` 返回库版本号的字符串，格式为 `X.Y.Z[.Date]`。
-- 当单行代码超过 80 个字符时，就要考虑分行。分行的规则是以参数为单位将从较长的参数开始换行，以此类推直到每行长度合适：
+- All applications that have `main` package should have constant `APP_VER` to indicate its version with format `X.Y.Z.Date [Status]`. For example, `0.7.6.1112 Beta`.
+- A library/package should have function `Version` to return its version in `string` type with format `X.Y.Z[.Date]`.
+- You should consider split lines of code that have more than 80 characters. The rule is use to argument as the unit to split:
 
 	```go
 	So(z.ExtractTo(
@@ -12,7 +12,7 @@
 		"dir/", "dir/bar", "readonly"), ShouldBeNil)
 	```
 
-- 当单行声明语句超过 80 个字符时，就要考虑分行。分行的规则是将参数按类型分组，紧接着的声明语句的是一个空行，以便和函数体区别：
+- When the function or method's declaration has more than 80 characters, you should consider split it as well. The rule is arguments with same type in the same line. After declaration, you also need to put an empty line to distinguish itself with function or method's body:
 
 	```go
 	// NewNode initializes and returns a new Node representation.
@@ -36,7 +36,7 @@
 	}
 	```
 
-- 分组声明一般需要按照功能来区分，而不是将所有类型都分在一组：
+- Group declaration should be organized by types, not all together:
 
 	```go
 	const (
@@ -56,7 +56,7 @@
 	)
 	```
 
-- 当一个源文件中存在多个相对独立的部分时，为方便区分，需使用由 [ASCII Generator](http://www.network-science.de/ascii/) 提供的句型字符标注（示例：`Comment`）：
+- When there are more than one functional modules in single source file, you should use [ASCII Generator](http://www.network-science.de/ascii/) to make a highlight title:
 
 	```go
 	// _________                                       __
@@ -67,7 +67,7 @@
 	//         \/             \/      \/     \/     \/
 	```
 
-- 函数或方法的顺序一般需要按照依赖关系由浅入深由上至下排序，即最底层的函数出现在最前面。例如，下方的代码，函数 `ExecCmdDirBytes` 属于最底层的函数，它被 `ExecCmdDir` 函数调用，而 `ExecCmdDir` 又被 `ExecCmd` 调用：
+- Functions or methods are ordered by the dependency relationship, such that the most dependent function or method should be at the top. In the following example, `ExecCmdDirBytes` is the most fundamental function, it's called by `ExecCmdDir`, and `ExecCmdDir` is also called by `ExecCmd`:
 
 	```go
 	// ExecCmdDirBytes executes system command in given directory
@@ -90,7 +90,7 @@
 	}
 	```
 
-- 结构附带的方法应置于结构定义之后，按照所对应操作的字段顺序摆放方法：
+- Methods of struct should be put after struct definition, and order them by the order of fields they mostly operate on:
 
 	```go
 	type Webhook struct { ... }
@@ -99,7 +99,7 @@
 	func (w *Webhook) HasPushEvent() bool { ... }
 	```
 
-- 如果一个结构拥有对应操作函数，大体上按照 `CRUD` 的顺序放置结构定义之后：
+- If a struct has operational functions, should basically follow the `CRUD` order:
 
 	```go
 	func CreateWebhook(w *Webhook) error { ... }
@@ -108,8 +108,8 @@
 	func DeleteWebhook(hookId int64) error { ... }
 	```
 
-- 如果一个结构拥有以 `Has`、`Is`、`Can` 或 `Allow` 开头的函数或方法，则应将它们至于所有其它函数及方法之前；这些函数或方法以 `Has`、`Is`、`Can`、`Allow` 的顺序排序。
-- 变量的定义要放置在相关函数之前：
+- If a struct has functions or methods start with `Has`, `Is`, `Can` or `Allow`, they should be ordered by the same order of `Has`, `Is`, `Can` or `Allow`.
+- Declaration of variables should be put before corresponding functions or methods:
 
 	```go
 	var CmdDump = cli.Command{
@@ -122,7 +122,7 @@
 	func runDump(*cli.Context) { ...
 	```
 
-- 在初始化结构时，尽可能使用一一对应方式：
+- Use named field to initialize struct fields whenever possible:
 
 	```go
 	AddHookTask(&HookTask{
