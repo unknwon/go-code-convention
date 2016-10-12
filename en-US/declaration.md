@@ -5,7 +5,7 @@
 Order of arguments of functions or methods should generally apply following rules (from left to right):
 
 1. More important to less important.
-2. Simple types to complicated to types.
+2. Simple types to complicated types.
 3. Same types should be put together whenever possible.
 
 #### Example
