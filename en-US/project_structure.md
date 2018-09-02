@@ -9,9 +9,9 @@ The following content shows a general structure of a web app, it can be changed 
 	- fonts
 	- img
 	- js
-- routers(controllers)
+- routes
 - models
-- modules
+- pkg
 	- setting                 # Global settings of app
 - cmd                         # Files of commands
 - conf                        # Default configuration

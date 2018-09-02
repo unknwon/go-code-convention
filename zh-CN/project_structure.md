@@ -9,9 +9,9 @@
 	- fonts                  
 	- img                    
 	- js                     
-- routers (controllers)      # 路由逻辑处理
+- routes                     # 路由逻辑处理
 - models					 # 数据逻辑层
-- modules                    # 子模块
+- pkg                        # 子模块
 	- setting                # 应用配置存取
 - cmd                        # 命令行程序命令
 - conf                       # 默认配置

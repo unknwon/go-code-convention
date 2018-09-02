@@ -11,7 +11,7 @@ Therefore, there are four types of packages a source file could import:
 
 Basic rules:
 
-- Use different sections to separate import paths by an empty line for two or more types of packages.
+- Use different groups to separate import paths by an empty line for two or more types of packages.
 - Must not use `.` to simplify import path except in test files (`*_test.go`).
 - Must not use relative path (`./subpackage`) as import path, all import paths must be `go get`-able.
 
@@ -27,11 +27,11 @@ import (
     "github.com/codegangsta/cli"
     "gopkg.in/macaron.v1"
 
-    "github.com/gogits/git"
-    "github.com/gogits/gfm"
+    "github.com/gogs/git"
+    "github.com/gogs/gfm"
 
-    "github.com/gogits/gogs/routers"
-    "github.com/gogits/gogs/routers/repo"
-    "github.com/gogits/gogs/routers/user"
+    "github.com/gogs/gogs/routes"
+    "github.com/gogs/gogs/routes/repo"
+    "github.com/gogs/gogs/routes/user"
 )
 ```
