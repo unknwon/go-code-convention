@@ -1,8 +1,8 @@
 # Copyright
 
-As a open source project, there must be a LICENSE file to claim the rights. 
+For any open source project, there must be a LICENSE file in the repository root to claim the rights.
 
-Here are two examples of using [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) and MIT licenses.
+Here are two examples of using [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) and MIT License.
 
 ### Apache License, Version 2.0
 
@@ -24,7 +24,7 @@ This license requires to put following content at the beginning of every file:
 // under the License.
 ```
 
-Replace `[yyyy]` with the year of creation of the file. Then use personal name for personal project, or organization name for team project to replace `[name of copyright owner]`.
+Replace `[yyyy]` with the creation year of the file. Then use personal name for personal projects, or organization name for team projects to replace `[name of copyright owner]`.
 
 ### MIT License
 
@@ -36,19 +36,19 @@ This license requires to put following content at the beginning of every file:
 // license that can be found in the LICENSE file.
 ```
 
-Replace `[yyyy]` with the year of creation of the file.
+Replace `[yyyy]` with the creation year of the file.
 
-### Other Notes
+### Other notes
 
 - Other types of license can follow the template of above two examples.
-- If a file has been modified by different individuals/organizations, and two licenses are compatiable, then change the first line to multiple lines and make them in the order of time:
+- If a file has been modified by different individuals and/or organizations, and multiple licenses are compatiable, then change the first line to multiple lines and sort them in the order of time:
 
 	```
 	// Copyright 2011 Gary Burd
 	// Copyright 2013 Unknwon
 	```
 	
-- Spefify which license is used for the project in the README file:
+- Spefify which license is used for the project in bottom of the README file:
 
 	```
 	## License
