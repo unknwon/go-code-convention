@@ -1,5 +1,64 @@
 # Go Code Convention
 
+## Copyright
+
+For any open source project, there must be a LICENSE file in the repository root to claim the rights.
+
+Here are two examples of using [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) and MIT License.
+
+### Apache License, Version 2.0
+
+This license requires to put following content at the beginning of every file:
+
+```
+// Copyright [yyyy] [name of copyright owner]
+//
+// Licensed under the Apache License, Version 2.0 (the "License"): you may
+// not use this file except in compliance with the License. You may obtain
+// a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+// License for the specific language governing permissions and limitations
+// under the License.
+```
+
+Replace `[yyyy]` with the creation year of the file. Then use personal name for personal projects, or organization name for team projects to replace `[name of copyright owner]`.
+
+### MIT License
+
+This license requires to put following content at the beginning of every file:
+
+```
+// Copyright [yyyy] [name of copyright owner]. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+```
+
+Replace `[yyyy]` with the creation year of the file.
+
+### Other notes
+
+- Other types of license can follow the template of above two examples.
+
+- If a file has been modified by different individuals and/or organizations, and multiple licenses are compatiable, then change the first line to multiple lines and sort them in the order of time:
+
+  ```
+  // Copyright 2011 Gary Burd
+  // Copyright 2013 Unknwon
+  ```
+
+- Spefify which license is used for the project in bottom of the README file:
+
+  ```
+  ## License
+  
+  This project is under the MIT License. See the [LICENSE](LICENSE) file for the full license text.
+  ```
+
 ## Project structure
 
 For server-side services and CLI applications, they generally follow the same style of project structure as follows:
@@ -189,4 +248,144 @@ import (
   func (r *UserResolver) Email(ctx context.Context) (string, error) {
   ```
 
+
+## Naming rules
+
+### Directory
+
+- Aovid using underscores (`_`) in directory names, use hyphens (`-`) instead.
+
+### File
+
+- Avoid using hyphens (`-`) in file names, use underscores (`_`) instead.
+- The file contains the entry point of the application or package should be named as `main.go` or same as the package.
+
+### Function and method
+
+- If the main purpose of the function or method is returning a `bool` type value, the name of function or method should starts with `Has`, `Is`, `Can` or `Allow`, etc.
+
+  ```go
+  func HasPrefix(name string, prefixes []string) bool { ... }
+  func IsEntry(name string, entries []string) bool { ... }
+  func CanManage(name string) bool { ... }
+  func AllowGitHook() bool { ... }
+  ```
+
+### Constants
+
+- Constant should use camel cases except for coined terms and brand names (see later):
+
+  ```go
+  const appVersion = "0.13.0+dev"
+  ```
+
+- If you need enumerated type, you should define the corresponding type first:
+
+  ```go
+  type Scheme string
   
+  const (
+  	HTTP  Scheme = "http"
+  	HTTPS Scheme = "https"
+  )
+  ```
+
+- If functionality of the module is relatively complicated and easy to mixed up with constant name, you can add prefix to every constant for the enumerated type:
+
+  ```go
+  type PullRequestStatus int
+  
+  const (
+  	PullRequestStatusConflict PullRequestStatus = iota
+  	PullRequestStatusChecking
+  	PullRequestStatusMergable
+  )
+  ```
+
+### Variables
+
+- A variable name should follow general English expression or shorthand.
+
+- In relatively simple (less objects and more specific) context, variable name can use simplified form as follows:
+
+  - `userID` to `uid`
+  - `repository` to `repo`
+
+- If variable type is `bool`, its name should start with `Has`, `Is`, `Can` or `Allow`, etc.
+
+  ```go
+  var isExist bool
+  var hasConflict bool
+  var canManage bool
+  var allowGitHook bool
+  ```
+
+- Same rules also apply for defining structs:
+
+  ```go
+  // Webhook represents a web hook object.
+  type Webhook struct {
+  	ID           int64
+  	RepoID       int64
+  	OrgID        int64
+  	URL          string
+  	ContentType  HookContentType
+  	Secret       string
+  	Events       string
+  	*HookEvent
+  	IsSSL        bool
+  	IsActive     bool
+  	HookTaskType HookTaskType
+  	Meta         string
+  	LastStatus   HookStatus
+  	CreatedAt    time.Time
+  	UpdatedAt    time.Time
+  }
+  ```
+
+### Coined term and brand name
+
+When you encounter coined terms and brand names, naming should respect the original or the most widely accepted form for the letter case. For example, use GitHub" not "Github", use "API" not "Api", use "ID" not "Id".
+
+When the coined term and brand name is the first word in a variable or constant name, keep them having the same cases. For example, `apiClient`, `SSLCertificate`.
+
+Here is a list of words which are commonly identified as unique nouns:
+
+```go
+// A GonicMapper that contains a list of common initialisms taken from golang/lint
+var LintGonicMapper = GonicMapper{
+	"API":   true,
+	"ASCII": true,
+	"CPU":   true,
+	"CSS":   true,
+	"DNS":   true,
+	"EOF":   true,
+	"GUID":  true,
+	"HTML":  true,
+	"HTTP":  true,
+	"HTTPS": true,
+	"ID":    true,
+	"IP":    true,
+	"JSON":  true,
+	"LHS":   true,
+	"QPS":   true,
+	"RAM":   true,
+	"RHS":   true,
+	"RPC":   true,
+	"SLA":   true,
+	"SMTP":  true,
+	"SSH":   true,
+	"TLS":   true,
+	"TTL":   true,
+	"UI":    true,
+	"UID":   true,
+	"UUID":  true,
+	"URI":   true,
+	"URL":   true,
+	"UTF8":  true,
+	"VM":    true,
+	"XML":   true,
+	"XSRF":  true,
+	"XSS":   true,
+}
+```
