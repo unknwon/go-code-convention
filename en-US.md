@@ -347,9 +347,9 @@ import (
 
 When you encounter coined terms and brand names, naming should respect the original or the most widely accepted form for the letter case. For example, use GitHub" not "Github", use "API" not "Api", use "ID" not "Id".
 
-When the coined term and brand name is the first word in a variable or constant name, keep them having the same cases. For example, `apiClient`, `SSLCertificate`.
+When the coined term and brand name is the first word in a variable or constant name, keep them having the same cases. For example, `apiClient`, `SSLCertificate`, `githubClient`.
 
-Here is a list of words which are commonly identified as unique nouns:
+Here is a list of words which are commonly identified as coined terms:
 
 ```go
 // A GonicMapper that contains a list of common initialisms taken from golang/lint
@@ -388,4 +388,22 @@ var LintGonicMapper = GonicMapper{
 	"XSRF":  true,
 	"XSS":   true,
 }
+```
+
+## Declaration
+
+### Function or method
+
+Order of arguments of functions or methods should generally apply following rules (from left to right):
+
+1. More important to less important.
+2. Simpler types to more complicated types.
+3. Same types should be put together whenever possible.
+
+#### Example
+
+In the following declaration, type `User` is more complicated than type `string`, but `Repository` belongs to `User` (which makes the `user` argument more important), so `user` is more left than `repoName`:
+
+```Go
+func IsRepositoryExist(user *User, repoName string) (bool, error) { ...
 ```
