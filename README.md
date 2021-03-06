@@ -1,6 +1,6 @@
 # Go Code Convention
 
-This is a 100% opinionated code convention for the Go Programming Language by [@unknwon](https://github.com/unknwon). It may or may not be compatible with [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments), or any other guidelines out there. That's fine, that is neither mine nor your problem.
+This is a 100% opinionated and paranoid code convention for the Go Programming Language by [@unknwon](https://github.com/unknwon). It may or may not be compatible with [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments), or any other guidelines out there. That's fine, that is neither mine nor your problem.
 
 ![](https://imgs.xkcd.com/comics/standards.png)
 
@@ -8,7 +8,7 @@ Be sure to always remember, "尽信书不如无书".
 
 For non-Chinese readers, [what does 尽信书不如无书 mean?](https://chinese.stackexchange.com/a/26717)
 
-
+<br>
 
 Ready? OK, pick one you like:
 
@@ -18,7 +18,7 @@ Ready? OK, pick one you like:
 
 ## Roadmap for current version
 
-- [ ] Overhaul exsiting content for en-US
+- [x] Overhaul exsiting content for en-US
 - [ ] Add more pages about:
   - [ ] Linting
   - [ ] Database layer construction and testing

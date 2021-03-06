@@ -253,11 +253,11 @@ import (
 
 ### Directory
 
-- Aovid using underscores (`_`) in directory names, use hyphens (`-`) instead.
+- Do not use underscores (`_`) in directory names, use hyphens (`-`) instead.
 
 ### File
 
-- Avoid using hyphens (`-`) in file names, use underscores (`_`) instead.
+- Do not use hyphens (`-`) in file names, use underscores (`_`) instead.
 - The file contains the entry point of the application or package should be named as `main.go` or same as the package.
 
 ### Function and method
@@ -407,3 +407,121 @@ In the following declaration, type `User` is more complicated than type `string`
 ```Go
 func IsRepositoryExist(user *User, repoName string) (bool, error) { ...
 ```
+
+## Coding guidelines
+
+- Do not initialize structs with unnamed fields and break fields into multiple lines:
+
+  ```go
+  func main() {
+  	...
+  	awsCloudwatchLogsLogGroup := os.Getenv("AWS_CLOUDWATCH_LOGS_LOG_GROUP")
+  	if awsCloudwatchLogsLogGroup != "" {
+  		client := awsutil.NewDefaultClient()
+  		err := log.New(
+  			"cloudwatchlogs",
+  			awsutil.CloudWatchLogsIniter(),
+  			1000,
+  			awsutil.CloudWatchLogsConfig{ // <---- Focus here
+  				Level:           log.LevelInfo,
+  				Client:          client.NewCloudWatchLogsClient(),
+  				LogGroupName:    awsCloudwatchLogsLogGroup,
+  				LogStreamPrefix: awsCloudwatchLogsLogGroup + "-stream",
+  				Retention:       30,
+  				MaxRetries:      3,
+  			},
+  		)
+  		if err != nil {
+  			log.Fatal("Failed to init cloudwatchlogs logger: %v", err)
+  		}
+  	}
+  	...
+  }
+  ```
+
+- Group declaration should be organized by types, not all together:
+
+  ```go
+  const (
+  	// Default section name.
+  	DefaultSection = "DEFAULT"
+  	// Maximum allowed depth when recursively substituing variable names.
+  	depthValues = 200
+  )
+  
+  type ParseError int
+  
+  const (
+  	ErrSectionNotFound ParseError = iota + 1
+  	ErrKeyNotFound
+  	ErrBlankSectionName
+  	ErrCouldNotParse
+  )
+  ```
+
+- Functions or methods are ordered by the dependency relationship, such that the most dependent function or method should be at the top. In the following example, `ExecCmdDirBytes` is the most fundamental function, it's called by `ExecCmdDir`, and `ExecCmdDir` is also called by `ExecCmd`:
+
+  ```go
+  // ExecCmdDirBytes executes system command in given directory
+  // and return stdout, stderr in bytes type, along with possible error.
+  func ExecCmdDirBytes(dir, cmdName string, args ...string) ([]byte, []byte, error) {
+  	...
+  }
+  
+  // ExecCmdDir executes system command in given directory
+  // and return stdout, stderr in string type, along with possible error.
+  func ExecCmdDir(dir, cmdName string, args ...string) (string, string, error) {
+  	bufOut, bufErr, err := ExecCmdDirBytes(dir, cmdName, args...)
+  	return string(bufOut), string(bufErr), err
+  }
+  
+  // ExecCmd executes system command
+  // and return stdout, stderr in string type, along with possible error.
+  func ExecCmd(cmdName string, args ...string) (string, string, error) {
+  	return ExecCmdDir("", cmdName, args...)
+  }
+  ```
+
+- Methods of struct should be put after struct definition, and order them by the order of fields they mostly operate on:
+
+  ```go
+  type Webhook struct { ... }
+  func (w *Webhook) GetEvent() { ... }
+  func (w *Webhook) SaveEvent() error { ... }
+  func (w *Webhook) HasPushEvent() bool { ... }
+  ```
+
+- If a struct has operational functions, should basically follow the `CRUD` order:
+
+  ```go
+  func CreateWebhook(w *Webhook) error { ... }
+  func GetWebhookById(hookId int64) (*Webhook, error) { ... }
+  func UpdateWebhook(w *Webhook) error { ... }
+  func DeleteWebhook(hookId int64) error { ... }
+  ```
+
+- If a struct has functions or methods start with `Has`, `Is`, `Can` or `Allow`, they should be ordered by the same order of `Has`, `Is`, `Can` or `Allow`.
+
+- Declaration of variables should be put before corresponding functions or methods:
+
+  ```go
+  var CmdDump = cli.Command{
+  	Name:  "dump",
+  	...
+  	Action: runDump,
+  	Flags:  []cli.Flag{},
+  }
+  
+  func runDump(*cli.Context) { ...
+  ```
+
+## Testing
+
+- Unit tests must use [github.com/stretchr/testify](https://github.com/stretchr/testify) and code coverage must above 80%.
+
+### Examples
+
+- The file of examples of helper modules should be named as `example_test.go`.
+- Test cases of functions must start with `Test`, e.g. `TestLogger`.
+- Test cases of methods must use format `Text<Struct>_<Method>`, e.g. `TestMacaron_Run`.
+
