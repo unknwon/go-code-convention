@@ -201,7 +201,7 @@ import (
   ```
 
 
-### Function and method
+### Functions and methods
 
 - Comments of functions and methods must start with its name:
 
@@ -251,16 +251,16 @@ import (
 
 ## Naming rules
 
-### Directory
+### Directories
 
 - Do not use underscores (`_`) in directory names, use hyphens (`-`) instead.
 
-### File
+### Files
 
 - Do not use hyphens (`-`) in file names, use underscores (`_`) instead.
 - The file contains the entry point of the application or package should be named as `main.go` or same as the package.
 
-### Function and method
+### Functions and methods
 
 - If the main purpose of the function or method is returning a `bool` type value, the name of function or method should starts with `Has`, `Is`, `Can` or `Allow`, etc.
 
@@ -343,9 +343,9 @@ import (
   }
   ```
 
-### Coined term and brand name
+### Coined terms and brand names
 
-When you encounter coined terms and brand names, naming should respect the original or the most widely accepted form for the letter case. For example, use GitHub" not "Github", use "API" not "Api", use "ID" not "Id".
+When you encounter coined terms and brand names, naming should respect the original or the most widely accepted form for the letter case. For example, use "GitHub" not "Github", use "API" not "Api", use "ID" not "Id".
 
 When the coined term and brand name is the first word in a variable or constant name, keep them having the same cases. For example, `apiClient`, `SSLCertificate`, `githubClient`.
 
@@ -390,9 +390,9 @@ var LintGonicMapper = GonicMapper{
 }
 ```
 
-## Declaration
+## Declarations
 
-### Function or method
+### Functions or methods
 
 Order of arguments of functions or methods should generally apply following rules (from left to right):
 
