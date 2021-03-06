@@ -12,14 +12,15 @@ For non-Chinese readers, [what does 尽信书不如无书 mean?](https://chinese
 
 Ready? OK, pick one you like:
 
+- [English](en-US.md)
+
 - [简体中文](zh-CN/README.md)
-- [English](en-US/README.md)
 
 ## Roadmap for current version
 
 - [ ] Overhaul exsiting content for en-US
 - [ ] Add more pages about:
-  - [ ] Project structure
+  - [ ] Linting
   - [ ] Database layer construction and testing
   - [ ] Error wrapping
   - [ ] Dependency injection
