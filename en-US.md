@@ -41,4 +41,38 @@ var Migrations embed.FS
 
 ## Import packages
 
-TBD
+All package import paths must be valid Go Modules path except packages from standard library.
+
+Generally, there are four types of packages a source file could import:
+
+1. Packages from standard library
+2. Third-party packages
+3. Packages in the same organization but not in the same repository
+4. Packages in the same repository
+
+Basic rules:
+
+- Use different groups to separate import paths by an blank line for two or more types of packages.
+- Must not use `.` to simplify import path except in test files (`*_test.go`).
+- Must not use relative path (`./subpackage`) as import path.
+
+Here is a concrete example:
+
+```go
+import (
+    "fmt"
+    "html/template"
+    "net/http"
+    "os"
+
+    "github.com/urfave/cli"
+    "gopkg.in/macaron.v1"
+
+    "github.com/gogs/git-module"
+
+    "github.com/gogs/gogs/internal/route"
+    "github.com/gogs/gogs/internal/route/repo"
+    "github.com/gogs/gogs/internal/route/user"
+)
+```
+
