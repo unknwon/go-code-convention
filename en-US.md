@@ -81,6 +81,7 @@ internal/            # Common packages, "internal" is also a keyword to prevent 
     db/              # Database layer
     route/           # Routing layer
 log/                 # Appication generated logs
+.golangci.yml        # Custom configuration for golangci-lint
 ```
 
 ### Example `embed.go`
@@ -347,7 +348,7 @@ import (
 
 When you encounter coined terms and brand names, naming should respect the original or the most widely accepted form for the letter case. For example, use "GitHub" not "Github", use "API" not "Api", use "ID" not "Id".
 
-When the coined term and brand name is the first word in a variable or constant name, keep them having the same cases. For example, `apiClient`, `SSLCertificate`, `githubClient`.
+When the coined term and brand name is the first word in a variable or constant name, keep them having the same case. For example, `apiClient`, `SSLCertificate`, `githubClient`.
 
 Here is a list of words which are commonly identified as coined terms:
 
@@ -410,7 +411,7 @@ func IsRepositoryExist(user *User, repoName string) (bool, error) { ...
 
 ## Coding guidelines
 
-- Do not initialize structs with unnamed fields and break fields into multiple lines:
+- Do not initialize structs with unnamed fields and do break fields into multiple lines:
 
   ```go
   func main() {
@@ -524,4 +525,34 @@ func IsRepositoryExist(user *User, repoName string) (bool, error) { ...
 - The file of examples of helper modules should be named as `example_test.go`.
 - Test cases of functions must start with `Test`, e.g. `TestLogger`.
 - Test cases of methods must use format `Text<Struct>_<Method>`, e.g. `TestMacaron_Run`.
+
+## Linting
+
+**Warnings will be ignored in practice**, CI should either fail or pass on linting, anything that is not failing the CI should be removed.
+
+Here is the best practice for configuring `.golangci.yml`:
+
+```yml
+linters-settings:
+  nakedret:
+    max-func-lines: 0 # Disallow any unnamed return statement
+
+linters:
+  enable:
+    - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    - nakedret
+    - gofmt
+    - rowserrcheck
+    - unconvert
+    - goimports
+```
 

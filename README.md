@@ -14,13 +14,13 @@ Ready? OK, pick one you like:
 
 - [English](en-US.md)
 
-- [简体中文](zh-CN/README.md)
+- [简体中文](zh-CN/README.md) _Stay tuned!_
 
 ## Roadmap for current version
 
 - [x] Overhaul exsiting content for en-US
 - [ ] Add more pages about:
-  - [ ] Linting
+  - [x] Linting
   - [ ] Database layer construction and testing
   - [ ] Error wrapping
   - [ ] Dependency injection
